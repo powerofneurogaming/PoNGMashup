@@ -12,8 +12,9 @@ public class PlayerCollider : MonoBehaviourPunCallbacks, IPunObservable
     private bool canCollide = true;
     public float score = -1e6f;
     public float penalty = 1.0f;
-    private Text message = null;
     public TMPro.TMP_Text scoreText;
+
+    private Text message = null;
 
     private void Start()
     {
@@ -57,7 +58,10 @@ public class PlayerCollider : MonoBehaviourPunCallbacks, IPunObservable
     /// <returns></returns>
     private IEnumerator Death()
     {
-        message.text = "You got hit!";
+        if(message != null)
+        {
+            message.text = "You got hit!";
+        }
         player.GetComponent<PlayerMovement>().paused = true;
         score -= penalty;
 
@@ -73,7 +77,11 @@ public class PlayerCollider : MonoBehaviourPunCallbacks, IPunObservable
         player.transform.position = endPos;
         canCollide = true;
         player.GetComponent<PlayerMovement>().paused = false;
-        message.text = "";
+
+        if (message != null)
+        {
+            message.text = "";
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
