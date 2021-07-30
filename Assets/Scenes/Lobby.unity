@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonText: {fileID: 1212192844}
-  roomSize: 4
+  roomSize: 15
 --- !u!4 &606344279
 Transform:
   m_ObjectHideFlags: 0
